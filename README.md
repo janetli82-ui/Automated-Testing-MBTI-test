@@ -1,36 +1,11 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+MBTI Personality Test Project
 
-## Getting Started
+A lightweight Single Page Application (SPA) built with Next.js, TypeScript, and Tailwind CSS that presents a 4question personality quiz and displays the calculated result.
 
-First, run the development server:
+What the App Does
+1. Header & Footer: Shows the main title, creator name, and a brain icon.
+2. Progress Bar: Shows how far the user has progressed (`25% -> 50% -> 75% -> 100%`).
+3. Question & Answers (QA): Shows 1 question and 2 choice buttons at a time. A "Previous" button appears starting from Question 2.
+4. State Management: Remembers user choices and automatically moves to the next question.
+5. Result & Restart: Displays the calculated result after Question 4, along with a "Test again!" button that resets the quiz back to Question 1.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
