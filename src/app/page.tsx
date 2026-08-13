@@ -1,69 +1,74 @@
-import Image from "next/image";
+'use client'
+import ProgressBar from "../../components/ProgressBar"
+import QA from "../../components/QA"
+import Footer from "../../components/Footer";
+import { useState } from "react";
+import {mbtiQuestions} from "../../data/data"
+import Result from "../../components/Result"
+import {results} from "../../data/data"
+
 
 export default function Home() {
+
+  const [currentNumber, setCurrentNumber ] =useState(0);
+
+  //선택한 알파벳을 모아둘 배열
+  const [userAnswers, setUserAnswers] = useState<string[]>([])
+
+  //결과 화면을 띄울지 여부
+  const [showResult, setShowResult] = useState(false)
+
+  //답변을 선택 했을 때 실행되는 함수!
+  const handleSelectAnswer = (selectedType:string) => {
+
+    //user가 선택한 알파벳을 배열에 누적
+    const nextAnswer = [...userAnswers, selectedType]
+    setUserAnswers(nextAnswer)
+
+    // 아직 다음 질문이 남아있다면 질문 번호 +1
+    if(currentNumber < mbtiQuestions.length -1) {
+      setCurrentNumber ((prev) => prev +1)
+    } else {
+      setShowResult(true)
+    }
+  }
+
+    // 유저한테 받은 답 하나로 합치기 (예: ['E', 'N', 'F', 'P'] -> "ENFP")
+    const finalResult = userAnswers.join("")
+    const resultData = results[finalResult]
+
+
+  //이전 질문으로 돌아가는 함수
+  const handlePrevQuestion = () => {
+    if(currentNumber > 0) {
+      setCurrentNumber((prev)=> prev -1)
+
+      //가장 최근에 고른 답 하나를 배열에서 지워줍니다. (맨 뒤 아이템 제거)
+      setUserAnswers((prev) => prev.slice(0, -1))
+    }
+  }
+
+  const handleRestart = () => {
+    setCurrentNumber(0)
+    setUserAnswers([])
+    setShowResult(false)
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="">
+      {!showResult ? (
+        <>
+          <ProgressBar currentNumber={currentNumber} />
+          <QA 
+            currentNumber={currentNumber}
+            selectAnswer={handleSelectAnswer}
+            onPrev={handlePrevQuestion}
+          />
+        </>
+      ) : ( //퀴즈 끝나면
+        <Result resultData={resultData} reStart={handleRestart} />
+      )}
+      <Footer />
     </div>
   );
 }
