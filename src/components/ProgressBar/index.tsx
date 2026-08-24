@@ -3,10 +3,10 @@ type ProgressBarProps = {
   totalQuestions?: number;
 };
 
-export default function ProgressBar({
+const ProgressBar = ({
   currentNumber,
   totalQuestions = 4,
-}: ProgressBarProps) {
+}: ProgressBarProps) => {
   const currentQuestion = Math.min(
     Math.max(currentNumber + 1, 0),
     totalQuestions,
@@ -32,3 +32,5 @@ export default function ProgressBar({
     </div>
   );
 }
+
+export default ProgressBar
