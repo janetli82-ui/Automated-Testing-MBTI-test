@@ -7,11 +7,10 @@ type ResultProps = {
   resultData: ResultData;
   reStart: () => void;
 };
-
-export default function Result({
+const Result = ({
   resultData,
   reStart,
-}: ResultProps) {
+}: ResultProps) => {
   return (
     <section className="mx-auto flex max-w-2xl flex-col items-center rounded-2xl bg-white p-8 text-center shadow-lg">
       <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-indigo-600">
@@ -36,3 +35,5 @@ export default function Result({
     </section>
   );
 }
+
+export default Result
