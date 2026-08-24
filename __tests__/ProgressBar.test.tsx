@@ -1,5 +1,5 @@
 import {render, screen} from '@testing-library/react'
-import ProgressBar from '../components/ProgressBar'
+import ProgressBar from '@/components/ProgressBar'
 
 test("Displays the progress bar on the screen?", () => {
     render(<ProgressBar currentNumber={0} />)
