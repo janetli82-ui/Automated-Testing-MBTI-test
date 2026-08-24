@@ -23,7 +23,7 @@ const QA = ({ currentNumber, selectAnswer, onPrev }: QAProp) => {
               <button
                 key={index}
                 onClick={() => selectAnswer(answer.type)}
-                className="border rounded-xl border-gray-400 md:h-10 md:w-lg cursor-pointer text-gray-600 text-center leading-8.25"
+                className="border rounded-xl border-gray-400 md:h-10 md:w-lg cursor-pointer text-gray-600 text-center leading-8.25" data-testId="option-button"
               >
                 {answer.text}
               </button> 

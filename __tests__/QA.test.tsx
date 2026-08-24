@@ -27,7 +27,8 @@ test("renders the question heading element", () => {
 //feedback: This test only shows that there are two buttons, but it doesn't verify what the button labels are, or whether they correspond to the current question.
 test("Displays two answers options for the current question?", () => {
   render(<QA currentNumber={0} selectAnswer={() => {}} />);
-
+//because we have previous and result button, so it should add data-testId in options button
+//const optionButton = screen.getAllByTestId("option-button")
   const optionButton = screen.getAllByRole("button");
   expect(optionButton).toHaveLength(2);
 //expect(optionButton[0]).toHaveTextContent("Contact friends and hang out together.")

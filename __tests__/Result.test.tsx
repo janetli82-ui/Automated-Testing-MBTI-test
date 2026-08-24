@@ -9,7 +9,9 @@ const mockResultData = {
 test("Displays the result title and description", () => {
     render(
         <Result resultData={mockResultData} reStart={() =>{}} />)
-
+  //feedback:
+  //since the header already uses <h1>, the Result component should NOT use <h1> as well. It can be changed to <h3> because the QA component already uses <h2>
+  //expect(screen.getByRole("heading",{level:3 })).toHaveTextContent("Strategic Architect")
     expect(screen.getByRole("heading",{level:1 })).toHaveTextContent("Strategic Architect")
     expect(screen.getByText(/Thoughtful planner with a clear strategy for everything/i)).toBeInTheDocument()
 })
