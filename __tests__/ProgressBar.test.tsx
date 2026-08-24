@@ -1,5 +1,5 @@
 import {render, screen} from '@testing-library/react'
-import ProgressBar from '../components/ProgressBar'
+import ProgressBar from '@/components/ProgressBar'
 
 test("Displays the progress bar on the screen?", () => {
     render(<ProgressBar currentNumber={0} />)
@@ -17,3 +17,7 @@ test("Calculates and applies the correct width percentage based on currentNumber
     rerender(<ProgressBar currentNumber={1} />)
     expect(renderProgressBar).toHaveStyle("width:50%")
 })
+
+// feedback:
+// The ProgressBar tests should verify aria-valuenow,
+// aria-valuemin, and aria-valuemax for accessibility.
