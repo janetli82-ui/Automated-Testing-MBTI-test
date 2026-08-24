@@ -4,6 +4,7 @@ import { useState } from "react";
 import QA from "@/components/QA";
 import { mbtiQuestions, QuizResult, results } from "@/data/data";
 import Result from "@/components/Result";
+import Footer from "@/components/Footer";
 
 
 export default function Home() {
@@ -36,7 +37,8 @@ export default function Home() {
     setResultData(null);
   };
   return (
-    <main>
+    <div className="flex min-h-screen flex-col bg-slate-100">
+      <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-6 py-10">
       {resultData ? (
         <Result
           resultData={resultData}
@@ -46,5 +48,7 @@ export default function Home() {
       <QA currentNumber={currentNumber} selectAnswer={handleSelectClick}  onPrev={buttonClick}/>
       )}
     </main>
-  );
+    <Footer />
+    </div >
+  )
 }
