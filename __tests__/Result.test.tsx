@@ -1,5 +1,5 @@
 import { fireEvent, render, screen} from '@testing-library/react'
-import Result from '../components/Result'
+import Result from '@/components/Result'
 
 const mockResultData = {
         title:"Strategic Architect",
