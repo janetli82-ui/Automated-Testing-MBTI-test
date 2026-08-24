@@ -5,13 +5,18 @@ import QA from "@/components/QA";
 import { mbtiQuestions, QuizResult, results } from "@/data/data";
 import Result from "@/components/Result";
 import Footer from "@/components/Footer";
+import ProgressBar from "@/components/ProgressBar";
 
 
 export default function Home() {
   const [currentNumber, setCurrentNumber] = useState(0)
   const [resultData, setResultData] = useState<QuizResult | null>(null);
+  const [answers, setAnswers] = useState<string[]>([])
+  
+  const handleSelectClick = (answerType: string) => {
+    const updatedAnswers = [...answers, answerType]
+    setAnswers(updatedAnswers)
 
-  const handleSelectClick = () => {
     setCurrentNumber(prev => prev + 1)
 
     if (updatedAnswers.length === mbtiQuestions.length) {
@@ -37,7 +42,7 @@ export default function Home() {
     setResultData(null);
   };
   return (
-    <div className="flex min-h-screen flex-col bg-slate-100">
+    <div>
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-6 py-10">
       {resultData ? (
         <Result
@@ -45,8 +50,14 @@ export default function Home() {
           reStart={handleRestart}
         />
       ) : (
-      <QA currentNumber={currentNumber} selectAnswer={handleSelectClick}  onPrev={buttonClick}/>
+          <QA currentNumber={currentNumber} selectAnswer={handleSelectClick} onPrev={buttonClick} />
       )}
+      <div className="mb-8">
+        <ProgressBar
+          currentNumber={currentNumber}
+          totalQuestions={mbtiQuestions.length}
+        />
+      </div>
     </main>
     <Footer />
     </div >
