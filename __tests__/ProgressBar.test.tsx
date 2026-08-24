@@ -17,3 +17,7 @@ test("Calculates and applies the correct width percentage based on currentNumber
     rerender(<ProgressBar currentNumber={1} />)
     expect(renderProgressBar).toHaveStyle("width:50%")
 })
+
+// feedback:
+// The ProgressBar tests should verify aria-valuenow,
+// aria-valuemin, and aria-valuemax for accessibility.
