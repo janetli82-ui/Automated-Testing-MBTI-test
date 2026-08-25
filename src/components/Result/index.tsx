@@ -12,26 +12,28 @@ const Result = ({
   reStart,
 }: ResultProps) => {
   return (
-    <section className="mx-auto flex max-w-2xl flex-col items-center rounded-2xl bg-white p-8 text-center shadow-lg">
-      <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-indigo-600">
+    <section className="mx-auto flex w-full max-w-2xl flex-col items-center rounded-2xl bg-amber-50 p-10 md:h-90">
+      <div className="relative mt-5 flex w-full flex-col items-center gap-8 text-center">
+      <p className="text-balance font-bold text-amber-600">
         Your Result
       </p>
 
-      <h1 className="mb-4 text-3xl font-bold text-slate-900">
+      <h1 className="text-2xl font-bold text-slate-900">
         {resultData.title}
       </h1>
 
-      <p className="mb-8 max-w-lg text-slate-600">
+      <p className="max-w-lg text-center text-slate-600">
         {resultData.description}
       </p>
 
       <button
         type="button"
         onClick={reStart}
-        className="rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          className="h-10 cursor-pointer rounded-xl border border-gray-400 px-5 text-center leading-8 text-gray-600 transition hover:bg-amber-200"
       >
         Test again
       </button>
+      </div>
     </section>
   );
 }

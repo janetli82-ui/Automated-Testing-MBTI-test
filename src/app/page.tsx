@@ -42,24 +42,27 @@ export default function Home() {
     setResultData(null);
   };
   return (
-    <div>
+    <div className="flex min-h-screen flex-col">
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-6 py-10">
-      {resultData ? (
-        <Result
-          resultData={resultData}
-          reStart={handleRestart}
-        />
-      ) : (
-          <QA currentNumber={currentNumber} selectAnswer={handleSelectClick} onPrev={buttonClick} />
-      )}
-      <div className="mb-8">
-        <ProgressBar
-          currentNumber={currentNumber}
-          totalQuestions={mbtiQuestions.length}
-        />
-      </div>
-    </main>
-    <Footer />
-    </div >
+        {resultData ? (
+          <Result
+            resultData={resultData} 
+            reStart={handleRestart} />
+        ) : (
+          <>
+          <QA currentNumber={currentNumber} 
+              selectAnswer={handleSelectClick} 
+              onPrev={buttonClick} />
+              <div className="mb-8 w-full">
+                <ProgressBar
+                currentNumber={currentNumber} 
+                totalQuestions={mbtiQuestions.length} 
+                />
+            </div>
+            </>
+        )}
+      </main>
+      <Footer />
+    </div>
   )
 }

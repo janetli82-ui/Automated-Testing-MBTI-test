@@ -19,7 +19,7 @@ const ProgressBar = ({
   return (
     <div
       aria-label="Quiz progress"
-      className="h-3 w-full overflow-hidden rounded-full bg-slate-200"
+      className="h-3 w-full overflow-hidden rounded-full bg-amber-100"
     >
       <div
         role="progressbar"
@@ -27,7 +27,7 @@ const ProgressBar = ({
         aria-valuemax={100}
         aria-valuenow={percentage}
         style={{ width: `${percentage}%` }}
-        className="h-full rounded-full bg-indigo-600 transition-all duration-300"
+        className="h-full rounded-full bg-emerald-600 transition-all duration-300"
       />
     </div>
   );
